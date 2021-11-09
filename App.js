@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { StyleSheet, View, Text, Button, Image } from 'react-native';
+import { StyleSheet, View, Text, Button, Image, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -63,6 +63,30 @@ const productsScreen =  ({navigation}) => {
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <Text style={styles.searchPageList}>Products   Description   Sample</Text>
+          <View style = {styles.homePageScrollView}>
+          <ScrollView style = {styles.prodcutPageScrollView}>
+            <Text> 
+              Berry One
+              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
+              </Text>
+            <Text> 
+              Berry Two 
+              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
+            </Text>
+            <Text> 
+              Berry Three 
+              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
+            </Text>
+            <Text> 
+              Berry Four 
+              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
+              </Text>
+            <Text> 
+              Berry Five 
+              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
+            </Text>
+          </ScrollView>
+          </View>
         </View>
     </View>
 
@@ -162,6 +186,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 48,
   },
+  homePageScrollView: {
+    paddingBottom: 50,
+    backgroundColor: '#FF6461'
+  },
   homePageSubTitle: {
     color: '#FF6461',
     fontFamily: 'Roboto',
@@ -224,6 +252,18 @@ const styles = StyleSheet.create({
     paddingRight: 150,
     paddingTop: 25
   },
+  prodcutPageScrollView : {
+      paddingBottom: 100,
+      paddingTop: 100,
+      height: 50
+  },
+  productPageBerryPics :{
+    height: 500
+},
+productScrollView :{
+    marginBottom: 100,
+    paddingBottom: 100,
+},
   orderPageTitle: {
     color: '#FF6461',
     fontFamily: 'Roboto',
