@@ -36,15 +36,15 @@ const homeScreen =  ({navigation}) => {
 
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
-            title = "Search Screen"
-            onPress = {() => navigation.navigate('Search')}>
+            title = "Click Here for Products"
+            onPress = {() => navigation.navigate('Products')}>
         </Button>
     </View>
   );
 
 }
 
-const searchScreen =  ({navigation}) => {
+const productsScreen =  ({navigation}) => {
   return (
     <View style={styles.container}>
 
@@ -79,8 +79,51 @@ const searchScreen =  ({navigation}) => {
 
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
-            title = "Search Screen"
-            onPress = {() => navigation.navigate('Search')}>
+            title = "Click here to place Order!"
+            onPress = {() => navigation.navigate('Order')}>
+        </Button>
+    </View>
+  );
+
+}
+
+const orderScreen =  ({navigation}) => {
+  return (
+    <View style={styles.container}>
+
+    <View style = {styles.homePageStrawberry}>
+          <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
+          <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
+    </View>
+
+    <View style = {styles.homePageWords}>
+        <View style = {styles.homePageTitleView}>
+          <Text style={styles.orderPageTitle}>The products selected to order</Text>
+          <Text style={styles.orderPageSubTitle}>Please Review before checking out </Text>
+        </View>
+    </View>
+
+    <View style = {styles.homePageWords}>
+        <View style = {styles.homePageTitleView}>
+          <Text style={styles.orderPageList}>Order Review</Text>
+        </View>
+    </View>
+
+    <View style = {styles.homePageWords}>
+        <View style = {styles.homePageTitleView}>
+          <Text style={styles.orderPageOrders}>Order Total</Text>
+        </View>
+    </View>
+
+    <View style = {styles.homePageBottomView}>
+        <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+        <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+    </View>
+
+      <StatusBar style="auto" />
+        <Button style = {styles.homePageButton}
+            title = "Place Your Order!"
+            onPress = {() => navigation.navigate('Home')}>
         </Button>
     </View>
   );
@@ -92,7 +135,8 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName = "Home">
       <Stack.Screen name="Home" component={homeScreen} />
-      <Stack.Screen name="Search" component={searchScreen} />
+      <Stack.Screen name="Products" component={productsScreen} />
+      <Stack.Screen name="Order" component={orderScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     
@@ -178,6 +222,29 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 20,
     paddingRight: 150,
+    paddingTop: 25
+  },
+  orderPageTitle: {
+    color: '#FF6461',
+    fontFamily: 'Roboto',
+    fontSize: 28,
+  },
+  orderPageSubTitle: {
+    color: '#FF6461',
+    fontFamily: 'Roboto',
+    fontSize: 24,
+  },
+  orderPageList: {
+    color: '#FF6461',
+    fontFamily: 'Roboto',
+    fontSize: 20,
+    padding: 5
+  },
+  orderPageOrders: {
+    color: '#FF6461',
+    fontFamily: 'Roboto',
+    fontSize: 20,
+    paddingRight: 10,
     paddingTop: 25
   },
 });
