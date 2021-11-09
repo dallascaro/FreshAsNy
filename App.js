@@ -11,13 +11,8 @@ const homeScreen =  ({navigation}) => {
     <View style={styles.container}>
 
     <View style = {styles.homePageStrawberry}>
-        <View style = {styles.homePageTopStrawberryRight}>
-          <Image source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
-        </View>
-
-        <View style = {styles.homePageTopStrawberryLeft}>
-          <Image source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
-        </View>
+          <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
+          <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
     </View>
 
     <View style = {styles.homePageWords}>
@@ -29,19 +24,15 @@ const homeScreen =  ({navigation}) => {
 
     <View style = {styles.homePageEmojiView}>
       <View style = {styles.homePageEmoji}>
-      <Image source = {require('./assets/babesEmoji.png')}/>
+         <Image source = {require('./assets/babesEmoji.png')}/>
       </View>
     </View>
 
     <View style = {styles.homePageBottomView}>
-      <View style = {styles.homePageBottomStrawberryLeft}>
-        <Image source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
-      </View>
-     
-      <View style = {styles.homePageBottomStrawberryRight}>
-      <Image source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
-      </View>
+        <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+        <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
     </View>
+
 
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
@@ -56,12 +47,41 @@ const homeScreen =  ({navigation}) => {
 const searchScreen =  ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>This is a searchScreen</Text>
+
+    <View style = {styles.homePageStrawberry}>
+          <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
+          <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
+    </View>
+
+    <View style = {styles.homePageWords}>
+        <View style = {styles.homePageTitleView}>
+          <Text style={styles.searchPageTitle}>Please select from our </Text>
+          <Text style={styles.searchPageSubTitle}>Fresh amazing products! </Text>
+        </View>
+    </View>
+
+    <View style = {styles.homePageWords}>
+        <View style = {styles.homePageTitleView}>
+          <Text style={styles.searchPageList}>Products   Description   Sample</Text>
+        </View>
+    </View>
+
+    <View style = {styles.homePageWords}>
+        <View style = {styles.homePageTitleView}>
+          <Text style={styles.searchPageOrders}>Previous Orders</Text>
+        </View>
+    </View>
+
+    <View style = {styles.homePageBottomView}>
+        <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+        <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+    </View>
+
       <StatusBar style="auto" />
-      <Button
-      title = "Home Screen"
-      onPress = {() => navigation.navigate('Home')}>
-      </Button>
+        <Button style = {styles.homePageButton}
+            title = "Search Screen"
+            onPress = {() => navigation.navigate('Search')}>
+        </Button>
     </View>
   );
 
@@ -104,39 +124,60 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   homePageStrawberry : {
-    flex: 1
+    flex: .5,
+    display: "flex",
+    flexDirection: "row",
   },
   homePageWords : {
     flex: 1,
   },
   homePageEmojiView :{
-    flex: 2
+    flex: 3
   },
   homePageBottomView : {
-    flex: 4,
+    flex: 1,
+    flexDirection: "row"
   },
   homePageTopStrawberryLeft :{
-    marginLeft: 270,
-    marginBottom: 10
+      marginLeft: 250
   },
   homePageTopStrawberryRight :{
-    marginRight: 270,
+    
   },
   homePageBottomStrawberryLeft :{
-    paddingRight: 10,
     marginRight: 250,
-    marginTop: 175,
-    paddingTop: 50
+    marginTop : 50
   },
   homePageBottomStrawberryRight :{
-    marginLeft: 250,
-    paddingBottom: 20
-
+    marginTop : 50
   },
   homePageEmoji : {
-    marginRight: 100
+    marginRight: 100,
   },
   homePageButton : {
     paddingBottom: 10
-  }
+  },
+  searchPageTitle: {
+    color: '#FF6461',
+    fontFamily: 'Roboto',
+    fontSize: 32,
+  },
+  searchPageSubTitle: {
+    color: '#FF6461',
+    fontFamily: 'Roboto',
+    fontSize: 32,
+  },
+  searchPageList: {
+    color: '#FF6461',
+    fontFamily: 'Roboto',
+    fontSize: 20,
+    padding: 5
+  },
+  searchPageOrders: {
+    color: '#FF6461',
+    fontFamily: 'Roboto',
+    fontSize: 20,
+    paddingRight: 150,
+    paddingTop: 25
+  },
 });
