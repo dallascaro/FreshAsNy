@@ -48,6 +48,7 @@ const productsScreen =  ({navigation}) => {
   return (
     <View style={styles.container}>
 
+<View style = {styles.prodcutsTopView}>
     <View style = {styles.homePageStrawberry}>
           <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
           <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
@@ -59,37 +60,51 @@ const productsScreen =  ({navigation}) => {
           <Text style={styles.searchPageSubTitle}>Fresh amazing products! </Text>
         </View>
     </View>
+</View>
 
+<View style = {styles.prodcutsMiddleView}>
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <Text style={styles.searchPageList}>Products   Description   Sample</Text>
           <View style = {styles.homePageScrollView}>
-          <ScrollView style = {styles.prodcutPageScrollView}>
-            <Text> 
-              Berry One
-              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
-              </Text>
-            <Text> 
-              Berry Two 
-              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
-            </Text>
-            <Text> 
-              Berry Three 
-              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
-            </Text>
-            <Text> 
-              Berry Four 
-              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
-              </Text>
-            <Text> 
-              Berry Five 
-              <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
-            </Text>
-          </ScrollView>
+              <ScrollView style = {styles.prodcutPageScrollView}>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Berry One This is a normal berry arangement
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
+                          </Text>
+                      </ScrollView>
+                      <ScrollView horizontal={true}>
+                        <Text> 
+                          Berry Two This is a halloween berry basket
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
+                        </Text>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Berry Three This is a white chocolate berry with roses
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
+                        </Text>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Berry Four This berry is a chocolate berry
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
+                          </Text>
+                      </ScrollView>
+                      <ScrollView horizontal={true}>
+                        <Text> 
+                          Berry Five This berry is a chocolate berry
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
+                        </Text>
+                    </ScrollView>
+              </ScrollView>
           </View>
         </View>
     </View>
+</View>
 
+<View style = {styles.prodcutsBottomView}>
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <Text style={styles.searchPageOrders}>Previous Orders</Text>
@@ -106,7 +121,9 @@ const productsScreen =  ({navigation}) => {
             title = "Click here to place Order!"
             onPress = {() => navigation.navigate('Order')}>
         </Button>
-    </View>
+  </View>
+
+</View>
   );
 
 }
@@ -243,26 +260,34 @@ const styles = StyleSheet.create({
     color: '#FF6461',
     fontFamily: 'Roboto',
     fontSize: 20,
-    padding: 5
+    padding: 5,
   },
   searchPageOrders: {
-    color: '#FF6461',
     fontFamily: 'Roboto',
     fontSize: 20,
     paddingRight: 150,
-    paddingTop: 25
+    paddingTop: 25,
   },
   prodcutPageScrollView : {
       paddingBottom: 100,
-      paddingTop: 100,
-      height: 50
+      height: 150
   },
   productPageBerryPics :{
-    height: 500
+    height: 250,
+    width: 175
 },
 productScrollView :{
     marginBottom: 100,
     paddingBottom: 100,
+},
+prodcutsTopView : {
+  flex: 2
+},
+prodcutsMiddleView : {
+  flex: 1
+},
+prodcutsBottomView : {
+  flex: 3
 },
   orderPageTitle: {
     color: '#FF6461',
