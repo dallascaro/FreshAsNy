@@ -3,6 +3,7 @@ import * as React from 'react';
 import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+//import {auth} from './fireBase'
 
 const Stack = createNativeStackNavigator();
 
@@ -48,9 +49,23 @@ const homeScreen =  ({navigation}) => {
 
 const accountScreen =  ({navigation}) => {
 
-  const{userName, onChangeText} = React.useState("Placeholder");
-  const{password, onChangeText2} = React.useState("Placeholder");
+  const[userName, setUsername] = React.useState("Username");
+  const[password, setPassword] = React.useState("Password");
+  const[email, setEmail] = React.useState("Email");
+/*
 
+  This is the start of code to conected to a firebase database
+
+  const handleSignUp = () => {
+    auth
+    .createUserWithUsernameAndEmailAndPassword(userName, password, email)
+    .then(userCredentials =>{
+      const user = userCredentials.user
+      console.log(user.email)
+    })
+    .catch(error => alert(error.message))
+  }
+*/
   return (
     <View style={styles.container}>
 
@@ -69,8 +84,18 @@ const accountScreen =  ({navigation}) => {
     <View style={styles.textSpace}>
     <TextInput styles =  {styles.textInput}
                 placeholder = "Username: "
-                onChangeText = {onChangeText}
+                onChangeText = {text => setUsername(text)}
                 value = {userName}
+                backgroundColor = "white"
+                color = "gray"
+                >
+      </TextInput>
+      </View>
+      <View style={styles.textSpace}>
+    <TextInput styles =  {styles.textInput}
+                placeholder = "Email: "
+                onChangeText = {text => setEmail(text)}
+                value = {email}
                 backgroundColor = "white"
                 color = "gray"
                 >
@@ -79,7 +104,7 @@ const accountScreen =  ({navigation}) => {
       <View style={styles.textSpace}>
       <TextInput styles =  {styles.textInput}
                 placeholder = "Password: "
-                onChangeText = {onChangeText2}
+                onChangeText = {text => setPassword(text)}
                 value = {password}
                 backgroundColor = "white"
                 color = "gray"
