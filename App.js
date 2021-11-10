@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { StyleSheet, View, Text, Button, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
 const homeScreen =  ({navigation}) => {
+  
   return (
     <View style={styles.container}>
 
@@ -27,6 +28,80 @@ const homeScreen =  ({navigation}) => {
          <Image source = {require('./assets/babesEmoji.png')}/>
       </View>
     </View>
+
+    <View style = {styles.homePageBottomView}>
+        <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+        <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+    </View>
+
+
+      <StatusBar style="auto" />
+        <Button style = {styles.homePageButton}
+            title = "Click Here to create an Account"
+            onPress = {() => navigation.navigate('Account')}>
+        </Button>
+    </View>
+  );
+
+}
+
+const accountScreen =  ({navigation}) => {
+
+  const{userName, onChangeText} = React.useState("Placeholder");
+  const{password, onChangeText2} = React.useState("Placeholder");
+
+  return (
+    <View style={styles.container}>
+
+    <View style = {styles.homePageStrawberry}>
+          <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
+          <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
+    </View>
+
+    <View style = {styles.homePageWords}>
+        <View style = {styles.homePageTitleView}>
+          <Text style={styles.homePageTitle}>Fresh As Ny </Text>
+          <Text style={styles.homePageSubTitle}>Please Create an account below ! </Text>
+        </View>
+    </View>
+
+    <View style={styles.textSpace}>
+    <TextInput styles =  {styles.textInput}
+                placeholder = "Username: "
+                onChangeText = {onChangeText}
+                value = {userName}
+                backgroundColor = "white"
+                color = "gray">
+      </TextInput>
+      </View>
+      <View style={styles.textSpace}>
+      <TextInput styles =  {styles.textInput}
+                placeholder = "Password: "
+                onChangeText = {onChangeText2}
+                value = {password}
+                backgroundColor = "white"
+                color = "gray">
+      </TextInput>
+      </View>
+      <View>
+            <View style = {styles.accountButtonView}>
+              <View style = {styles.accountButtonView}>
+                  <Button style={styles.leftButtonSpacing}
+                  title = "Sign Up!"
+                  onPress={() => navigation.navigate('Products')}
+                  color='#ff0000'>
+                  </Button>
+              </View>
+              <View style = {styles.accountButtonView}>
+                  <Button style={styles.rightButtonSpacing}
+                  title = "Login In"
+                  onPress={() => navigation.navigate('Products')}
+                  color='#ff0000'>
+                  </Button>
+              </View>
+              </View>
+        </View>
+    
 
     <View style = {styles.homePageBottomView}>
         <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
@@ -176,6 +251,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName = "Home">
       <Stack.Screen name="Home" component={homeScreen} />
+      <Stack.Screen name="Account" component={accountScreen} />
       <Stack.Screen name="Products" component={productsScreen} />
       <Stack.Screen name="Order" component={orderScreen} />
       </Stack.Navigator>
@@ -245,6 +321,22 @@ const styles = StyleSheet.create({
   },
   homePageButton : {
     paddingBottom: 10
+  },
+  textInput :{
+    fontSize: 20,
+    color: "black",
+    backgroundColor: "white",
+    marginBottom: 10,
+  },
+  textSpace :{
+    paddingBottom: 10,
+    paddingTop: 10,
+    width: 200,
+  },
+  accountButtonView : {
+    flexDirection: 'row',
+    padding: 10,
+
   },
   searchPageTitle: {
     color: '#FF6461',
