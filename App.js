@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput } from 're
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //import {auth} from './fireBase'
+// danny told me to
 
 const Stack = createNativeStackNavigator();
 
