@@ -38,7 +38,8 @@ const homeScreen =  ({navigation}) => {
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
             title = "Click Here to create an Account"
-            onPress = {() => navigation.navigate('Account')}>
+            onPress = {() => navigation.navigate('Account')}
+            color='#ff0000'>
         </Button>
     </View>
   );
@@ -71,7 +72,8 @@ const accountScreen =  ({navigation}) => {
                 onChangeText = {onChangeText}
                 value = {userName}
                 backgroundColor = "white"
-                color = "gray">
+                color = "gray"
+                >
       </TextInput>
       </View>
       <View style={styles.textSpace}>
@@ -80,7 +82,8 @@ const accountScreen =  ({navigation}) => {
                 onChangeText = {onChangeText2}
                 value = {password}
                 backgroundColor = "white"
-                color = "gray">
+                color = "gray"
+                secureTextEntry>
       </TextInput>
       </View>
       <View>
@@ -112,7 +115,8 @@ const accountScreen =  ({navigation}) => {
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
             title = "Click Here for Products"
-            onPress = {() => navigation.navigate('Products')}>
+            onPress = {() => navigation.navigate('Products')}
+            color='#ff0000'>
         </Button>
     </View>
   );
@@ -194,7 +198,8 @@ const productsScreen =  ({navigation}) => {
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
             title = "Click here to place Order!"
-            onPress = {() => navigation.navigate('Order')}>
+            onPress = {() => navigation.navigate('Order')}
+            color='#ff0000'>
         </Button>
   </View>
 
@@ -239,7 +244,8 @@ const orderScreen =  ({navigation}) => {
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
             title = "Place Your Order!"
-            onPress = {() => navigation.navigate('Home')}>
+            onPress = {() => navigation.navigate('Home')}
+            color='#ff0000'>
         </Button>
     </View>
   );
