@@ -3,9 +3,7 @@ import * as React from 'react';
 import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-//import { auth } from './fireBase';
-
-// danny told me to
+//import { auth } from './fireBase.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,17 +49,17 @@ const homeScreen =  ({navigation}) => {
 
 const accountScreen =  ({navigation}) => {
 
-  const[userName, setUsername] = React.useState("Username");
-  const[password, setPassword] = React.useState("Password");
+  //users to be stored
   const[email, setEmail] = React.useState("Email");
 
-
-  const handleSignUp = () => {
-    auth
-    .createUserWithUsernameAndEmailAndPassword(userName, password, email)
+  // Do not need a database, only store the users info and order
+  // metehod for saving user email into authentication
+  
+  const placeOrder = () => {
+    auth.createUserWithEmail(email)
     .then(userCredentials =>{
-      const user = userCredentials.user
-      console.log(user.email)
+      const user = userCredentials.user;
+      console.log(user.email);
     })
     .catch(error => alert(error.message))
   }
@@ -77,53 +75,27 @@ const accountScreen =  ({navigation}) => {
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <Text style={styles.homePageTitle}>Fresh As Ny </Text>
-          <Text style={styles.homePageSubTitle}>Please Create an account below ! </Text>
+          <Text style={styles.homePageSubTitle}>Enter email to order below ! </Text>
         </View>
     </View>
 
-    <View style={styles.textSpace}>
-    <TextInput styles =  {styles.textInput}
-                placeholder = "Username: "
-                onChangeText = {text => setUsername(text)}
-                value = {userName}
-                backgroundColor = "white"
-                color = "gray"
-                >
-      </TextInput>
-      </View>
       <View style={styles.textSpace}>
     <TextInput styles =  {styles.textInput}
                 placeholder = "Email: "
-                onChangeText = {text => setEmail(text)}
+                onChangeText = {setEmail}
                 value = {email}
                 backgroundColor = "white"
                 color = "gray"
                 >
       </TextInput>
       </View>
-      <View style={styles.textSpace}>
-      <TextInput styles =  {styles.textInput}
-                placeholder = "Password: "
-                onChangeText = {text => setPassword(text)}
-                value = {password}
-                backgroundColor = "white"
-                color = "gray"
-                secureTextEntry>
-      </TextInput>
-      </View>
+  
       <View>
             <View style = {styles.accountButtonView}>
               <View style = {styles.accountButtonView}>
-                  <Button style={styles.leftButtonSpacing}
-                  title = "Sign Up!"
-                  onPress={handleSignUp}
-                  color='#ff0000'>
-                  </Button>
-              </View>
-              <View style = {styles.accountButtonView}>
                   <Button style={styles.rightButtonSpacing}
-                  title = "Login In"
-                  onPress={handleSignUp}
+                  title = "Enter Email"
+                  onPress={placeOrder}
                   color='#ff0000'>
                   </Button>
               </View>
@@ -212,43 +184,7 @@ const productsScreen =  ({navigation}) => {
 
 <View style = {styles.prodcutsBottomView}>
     <View style = {styles.homePageWords}>
-        <View style = {styles.homePageTitleView}>
-          <Text style={styles.searchPageOrders}>Previous Orders</Text>
-          <View style = {styles.productsPageScrollView}>
-              <ScrollView style = {styles.prodcutPageScrollView}>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Jasmines Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
-                          </Text>
-                      </ScrollView>
-                      <ScrollView horizontal={true}>
-                        <Text> 
-                          Candys Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
-                        </Text>
-                    </ScrollView>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Jakes Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
-                        </Text>
-                    </ScrollView>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Adams Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
-                          </Text>
-                      </ScrollView>
-                      <ScrollView horizontal={true}>
-                        <Text> 
-                          Caseys Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
-                        </Text>
-                    </ScrollView>
-              </ScrollView>
-          </View>
-        </View>
+       
     </View>
 
     <View style = {styles.prodcutsPageBottomView}>
@@ -298,25 +234,25 @@ const orderScreen =  ({navigation}) => {
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                          Candys Order
+                          Berry One
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Jakes Order
+                          Berry Two
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Adams Order
+                          Berry Three
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                          Caseys Order
+                          Berry Four
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
                         </Text>
                     </ScrollView>
@@ -327,41 +263,7 @@ const orderScreen =  ({navigation}) => {
 
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
-          <Text style={styles.orderPageOrders}>Order Total</Text>
-          <View style = {styles.productsPageScrollView}>
-              <ScrollView style = {styles.prodcutPageScrollView}>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Jasmines Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
-                          </Text>
-                      </ScrollView>
-                      <ScrollView horizontal={true}>
-                        <Text> 
-                          Candys Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
-                        </Text>
-                    </ScrollView>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Jakes Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
-                        </Text>
-                    </ScrollView>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Adams Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
-                          </Text>
-                      </ScrollView>
-                      <ScrollView horizontal={true}>
-                        <Text> 
-                          Caseys Order
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
-                        </Text>
-                    </ScrollView>
-              </ScrollView>
-          </View>
+          
         </View>
     </View>
 
@@ -502,7 +404,7 @@ const styles = StyleSheet.create({
   },
   prodcutPageScrollView : {
       paddingBottom: 100,
-      height: 150
+      height: 275
   },
   productPageBerryPics :{
     height: 250,
