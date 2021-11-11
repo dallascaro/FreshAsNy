@@ -3,7 +3,8 @@ import * as React from 'react';
 import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-//import {auth} from './fireBase'
+//import { auth } from './fireBase';
+
 // danny told me to
 
 const Stack = createNativeStackNavigator();
@@ -53,9 +54,7 @@ const accountScreen =  ({navigation}) => {
   const[userName, setUsername] = React.useState("Username");
   const[password, setPassword] = React.useState("Password");
   const[email, setEmail] = React.useState("Email");
-/*
 
-  This is the start of code to conected to a firebase database
 
   const handleSignUp = () => {
     auth
@@ -66,7 +65,7 @@ const accountScreen =  ({navigation}) => {
     })
     .catch(error => alert(error.message))
   }
-*/
+
   return (
     <View style={styles.container}>
 
@@ -117,14 +116,14 @@ const accountScreen =  ({navigation}) => {
               <View style = {styles.accountButtonView}>
                   <Button style={styles.leftButtonSpacing}
                   title = "Sign Up!"
-                  onPress={() => navigation.navigate('Products')}
+                  onPress={handleSignUp}
                   color='#ff0000'>
                   </Button>
               </View>
               <View style = {styles.accountButtonView}>
                   <Button style={styles.rightButtonSpacing}
                   title = "Login In"
-                  onPress={() => navigation.navigate('Products')}
+                  onPress={handleSignUp}
                   color='#ff0000'>
                   </Button>
               </View>
@@ -170,8 +169,10 @@ const productsScreen =  ({navigation}) => {
 <View style = {styles.prodcutsMiddleView}>
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
-          <Text style={styles.searchPageList}>Products   Description   Sample</Text>
-          <View style = {styles.homePageScrollView}>
+          <View style={styles.searchPageListView}>
+            <Text style={styles.searchPageList}>Products        Description        Sample</Text>
+          </View>
+          <View style = {styles.productsPageScrollView}>
               <ScrollView style = {styles.prodcutPageScrollView}>
                     <ScrollView horizontal={true}>
                         <Text> 
@@ -213,10 +214,44 @@ const productsScreen =  ({navigation}) => {
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <Text style={styles.searchPageOrders}>Previous Orders</Text>
+          <View style = {styles.productsPageScrollView}>
+              <ScrollView style = {styles.prodcutPageScrollView}>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Jasmines Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
+                          </Text>
+                      </ScrollView>
+                      <ScrollView horizontal={true}>
+                        <Text> 
+                          Candys Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
+                        </Text>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Jakes Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
+                        </Text>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Adams Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
+                          </Text>
+                      </ScrollView>
+                      <ScrollView horizontal={true}>
+                        <Text> 
+                          Caseys Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
+                        </Text>
+                    </ScrollView>
+              </ScrollView>
+          </View>
         </View>
     </View>
 
-    <View style = {styles.homePageBottomView}>
+    <View style = {styles.prodcutsPageBottomView}>
         <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
         <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
     </View>
@@ -253,12 +288,80 @@ const orderScreen =  ({navigation}) => {
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <Text style={styles.orderPageList}>Order Review</Text>
+          <View style = {styles.productsPageScrollView}>
+              <ScrollView style = {styles.prodcutPageScrollView}>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Jasmines Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
+                          </Text>
+                      </ScrollView>
+                      <ScrollView horizontal={true}>
+                        <Text> 
+                          Candys Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
+                        </Text>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Jakes Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
+                        </Text>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Adams Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
+                          </Text>
+                      </ScrollView>
+                      <ScrollView horizontal={true}>
+                        <Text> 
+                          Caseys Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
+                        </Text>
+                    </ScrollView>
+              </ScrollView>
+          </View>
         </View>
     </View>
 
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <Text style={styles.orderPageOrders}>Order Total</Text>
+          <View style = {styles.productsPageScrollView}>
+              <ScrollView style = {styles.prodcutPageScrollView}>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Jasmines Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
+                          </Text>
+                      </ScrollView>
+                      <ScrollView horizontal={true}>
+                        <Text> 
+                          Candys Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
+                        </Text>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Jakes Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
+                        </Text>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <Text> 
+                          Adams Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
+                          </Text>
+                      </ScrollView>
+                      <ScrollView horizontal={true}>
+                        <Text> 
+                          Caseys Order
+                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
+                        </Text>
+                    </ScrollView>
+              </ScrollView>
+          </View>
         </View>
     </View>
 
@@ -311,7 +414,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 48,
   },
-  homePageScrollView: {
+  productsScrollView: {
     paddingBottom: 50,
     backgroundColor: '#FF6461'
   },
@@ -386,11 +489,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 5,
   },
+  searchPageListView: {
+
+  },
   searchPageOrders: {
     fontFamily: 'Roboto',
     fontSize: 20,
+    color: '#FF6461',
     paddingRight: 150,
     paddingTop: 25,
+    marginTop: 50
   },
   prodcutPageScrollView : {
       paddingBottom: 100,
@@ -413,6 +521,11 @@ prodcutsMiddleView : {
 prodcutsBottomView : {
   flex: 3
 },
+prodcutsPageBottomView : {
+  flex: 1,
+  flexDirection: "row",
+  paddingTop: 45
+},
   orderPageTitle: {
     color: '#FF6461',
     fontFamily: 'Roboto',
@@ -434,6 +547,6 @@ prodcutsBottomView : {
     fontFamily: 'Roboto',
     fontSize: 20,
     paddingRight: 10,
-    paddingTop: 25
+    paddingTop: 45
   },
 });
