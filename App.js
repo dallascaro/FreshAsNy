@@ -57,7 +57,7 @@ const accountScreen =  ({navigation}) => {
   // metehod for saving user email into authentication
   
   const placeOrder = () => {
-    auth.signInWithEmailAndPassword(email)
+    auth.signInWithEmailAndPassword(email.trim(), password) 
     .then(userCredentials =>{
       const user = userCredentials.user;
       console.log(user.email);
