@@ -3,7 +3,7 @@ import * as React from 'react';
 import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-//import { auth } from './fireBase.js';
+import { auth } from './fireBase.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,12 +51,13 @@ const accountScreen =  ({navigation}) => {
 
   //users to be stored
   const[email, setEmail] = React.useState("Email");
+  const[password, setPassword] = React.useState("Password");
 
   // Do not need a database, only store the users info and order
   // metehod for saving user email into authentication
   
   const placeOrder = () => {
-    auth.createUserWithEmail(email)
+    auth.signInWithEmailAndPassword(email)
     .then(userCredentials =>{
       const user = userCredentials.user;
       console.log(user.email);
@@ -75,7 +76,7 @@ const accountScreen =  ({navigation}) => {
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <Text style={styles.homePageTitle}>Fresh As Ny </Text>
-          <Text style={styles.homePageSubTitle}>Enter email to order below ! </Text>
+          <Text style={styles.homePageSubTitle}>Enter email and password to order below ! </Text>
         </View>
     </View>
 
@@ -88,13 +89,23 @@ const accountScreen =  ({navigation}) => {
                 color = "gray"
                 >
       </TextInput>
+      </View><View style={styles.textSpace}>
+    <TextInput styles =  {styles.textInput}
+                placeholder = "Password: "
+                onChangeText = {setPassword}
+                value = {password}
+                backgroundColor = "white"
+                color = "gray"
+                secureTextEntry
+                >
+      </TextInput>
       </View>
   
       <View>
             <View style = {styles.accountButtonView}>
               <View style = {styles.accountButtonView}>
                   <Button style={styles.rightButtonSpacing}
-                  title = "Enter Email"
+                  title = "Enter Email and Password"
                   onPress={placeOrder}
                   color='#ff0000'>
                   </Button>
@@ -148,31 +159,31 @@ const productsScreen =  ({navigation}) => {
               <ScrollView style = {styles.prodcutPageScrollView}>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Berry One This is a normal berry arangement
+                          This is a normal berry arangement
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                          Berry Two This is a halloween berry basket
+                          This is a halloween berry basket
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Berry Three This is a white chocolate berry with roses
+                          This is a white chocolate berry with roses
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Berry Four This berry is a chocolate berry
+                          This berry is a chocolate berry
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                          Berry Five This berry is a chocolate berry
+                          This berry is a chocolate berry
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
                         </Text>
                     </ScrollView>
@@ -206,6 +217,10 @@ const productsScreen =  ({navigation}) => {
 }
 
 const orderScreen =  ({navigation}) => {
+
+  //users to be stored
+  const[description, setDescription] = React.useState("Description");
+
   return (
     <View style={styles.container}>
 
@@ -228,31 +243,31 @@ const orderScreen =  ({navigation}) => {
               <ScrollView style = {styles.prodcutPageScrollView}>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Jasmines Order
+                          Here is Jasmines Order
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                          Berry One
+                        Here is Jasmines Order
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Berry Two
+                        Here is Jasmines Order
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Berry Three
+                        Here is Jasmines Order
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                          Berry Four
+                        Here is Jasmines Order
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
                         </Text>
                     </ScrollView>
@@ -261,10 +276,17 @@ const orderScreen =  ({navigation}) => {
         </View>
     </View>
 
-    <View style = {styles.homePageWords}>
-        <View style = {styles.homePageTitleView}>
-          
-        </View>
+    <View style = {styles.orderPageWords}>
+          <View style={styles.textOrderSpace}>
+            <TextInput styles =  {styles.textInput}
+                        placeholder = "Description: "
+                        onChangeText = {setDescription}
+                        value = {description}
+                        backgroundColor = "white"
+                        color = "gray"
+                        >
+              </TextInput>
+          </View>
     </View>
 
     <View style = {styles.homePageBottomView}>
@@ -317,7 +339,7 @@ const styles = StyleSheet.create({
     fontSize: 48,
   },
   productsScrollView: {
-    paddingBottom: 50,
+    //paddingBottom: 50,
     backgroundColor: '#FF6461'
   },
   homePageSubTitle: {
@@ -338,7 +360,9 @@ const styles = StyleSheet.create({
   },
   homePageBottomView : {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    marginTop: 0,
+    //position: "absolute"
   },
   homePageTopStrawberryLeft :{
       marginLeft: 250
@@ -369,6 +393,11 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingTop: 10,
     width: 200,
+  },
+  textOrderSpace :{
+    // paddingTop: 140,
+    width: 200,
+    position: "absolute"
   },
   accountButtonView : {
     flexDirection: 'row',
@@ -404,7 +433,7 @@ const styles = StyleSheet.create({
   },
   prodcutPageScrollView : {
       paddingBottom: 100,
-      height: 275
+      height: 290
   },
   productPageBerryPics :{
     height: 250,
@@ -428,6 +457,9 @@ prodcutsPageBottomView : {
   flexDirection: "row",
   paddingTop: 45
 },
+orderPageWords : {
+  flex: 1,
+},
   orderPageTitle: {
     color: '#FF6461',
     fontFamily: 'Roboto',
@@ -442,13 +474,16 @@ prodcutsPageBottomView : {
     color: '#FF6461',
     fontFamily: 'Roboto',
     fontSize: 20,
-    padding: 5
   },
   orderPageOrders: {
     color: '#FF6461',
     fontFamily: 'Roboto',
     fontSize: 20,
     paddingRight: 10,
-    paddingTop: 45
   },
+  orderPageScrollView : {
+    paddingBottom: 100,
+    height: 290,
+    position: "absolute"
+},
 });
