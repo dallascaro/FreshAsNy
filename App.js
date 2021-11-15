@@ -28,18 +28,12 @@ const homeScreen =  ({navigation}) => {
          <Image source = {require('./assets/BerryPics/freshAsNyActualLogo.png')}/>
          <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
-            title = "Click Here to create an Account"
+            title = "Click Here to Enter Information for Order"
             onPress = {() => navigation.navigate('Account')}
             color='#ff0000'>
         </Button>
       </View>
     </View>
-
-    <View style = {styles.homePageBottomView}>
-    
-    </View>
-
-
       
     </View>
   );
@@ -114,10 +108,6 @@ const accountScreen =  ({navigation}) => {
               
         </View>
         <Image style = {styles.accountBerry} source = {require('./assets/BerryPics/theStrawberry.png')}/>
-
-    <View style = {styles.homePageBottomView}>
-        
-    </View>
 
 
       <StatusBar style="auto" />
@@ -217,63 +207,78 @@ const productsScreen =  ({navigation}) => {
 const orderScreen =  ({navigation}) => {
 
   //users to be stored
-  const[description, setDescription] = React.useState("Description");
+  const[description, setDescription] = React.useState("Please describe Request");
 
   return (
     <View style={styles.container}>
 
+<View style = {styles.prodcutsTopView}>
     <View style = {styles.homePageStrawberry}>
-         
+          
     </View>
 
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
-          <Text style={styles.orderPageTitle}>The products selected to order</Text>
-          <Text style={styles.orderPageSubTitle}>Please Review before checking out </Text>
+          <Text style={styles.searchPageTitle}>Please review your order </Text>
+          <Text style={styles.searchPageSubTitle}>Leave a comment for custom features </Text>
         </View>
     </View>
+</View>
 
+<View style = {styles.prodcutsMiddleView}>
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
-          <Text style={styles.orderPageList}>Order Review</Text>
+          <View style={styles.searchPageListView}>
+            <Text style={styles.searchPageList}>Your Order                            Sample</Text>
+          </View>
           <View style = {styles.productsPageScrollView}>
               <ScrollView style = {styles.prodcutPageScrollView}>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          Here is Jasmines Order
+                          Heart Shapped Berry with Name
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                        Here is Jasmines Order
+                          Halloween Berry Basket
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                        Here is Jasmines Order
+                          Berries with Wine and Roses
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                        Here is Jasmines Order
+                          Berries with Chocolate Heart
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                        Here is Jasmines Order
+                          Berries with Wine
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
                         </Text>
                     </ScrollView>
               </ScrollView>
-              
+          </View>
+        </View>
+    </View>
+</View>
 
-                  <View style={styles.textOrderSpace}>
+<View style = {styles.prodcutsBottomView}>
+    <View style = {styles.prodcutsPageBottomView}>
+       
+    </View>
+
+    <View style = {styles.prodcutsPageBottomViewText}>
+    <View style={styles.textOrderSpace}>
+     <Text>Write special requests below </Text>
                       <TextInput styles =  {styles.textInput}
-                                  placeholder = "Description: "
+                                  placeholder = "Please describe request: "
                                   onChangeText = {setDescription}
                                   value = {description}
                                   backgroundColor = "white"
@@ -281,25 +286,25 @@ const orderScreen =  ({navigation}) => {
                                   >
                         </TextInput>
                   </View>
-              
-          </View>
-          <View style = {styles.homePageBottomView}>
-              <StatusBar style="auto" />
-                <Button style = {styles.homePageButton}
-                    title = "Place Your Order!"
-                    onPress = {() => navigation.navigate('Home')}
-                    color='#ff0000'>
-                </Button>
-        
-            </View>
-      </View>
-      
-    </View>
+       
+       </View>
     
+
+      <StatusBar style="auto" />
+        <Button style = {styles.homePageButton}
+            title = "Click here to place Order!"
+            onPress = {() => navigation.navigate('Home')}
+            color='#ff0000'>
+        </Button>
+  </View>
+
 </View>
   );
 
 }
+
+
+
 
 const App = () => {
   return (
@@ -324,7 +329,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     color: '#FFB6C1',
-    backgroundColor: '#f7bfbe'
+    backgroundColor: '#ffd3d4'
   },
   homePageTitleView : {
     paddingBottom: 50,
@@ -339,7 +344,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF6461'
   },
   homePageSubTitle: {
-    color: '#FF6461',
+    color: '#e03c31',
     fontFamily: 'Roboto',
     fontSize: 18,
   },
@@ -408,20 +413,20 @@ const styles = StyleSheet.create({
   accountlogo :{
     height: 100,
     width: 100,
-    paddingRight: 100
+    paddingRight: 100,
   },
   searchPageTitle: {
-    color: '#FF6461',
+    color: '#e03c31',
     fontFamily: 'Roboto',
     fontSize: 32,
   },
   searchPageSubTitle: {
-    color: '#FF6461',
+    color: '#e03c31',
     fontFamily: 'Roboto',
     fontSize: 32,
   },
   searchPageList: {
-    color: '#FF6461',
+    color: '#e03c31',
     fontFamily: 'Roboto',
     fontSize: 20,
     padding: 5,
@@ -463,6 +468,12 @@ prodcutsPageBottomView : {
   flexDirection: "row",
   paddingTop: 45
 },
+prodcutsPageBottomViewText : {
+  flex: 1,
+  flexDirection: "row",
+  paddingTop: 0,
+  marginTop: 100
+},
 orderPageWords : {
   flex: 1,
 },
@@ -477,7 +488,7 @@ orderPageWords : {
     fontSize: 24,
   },
   orderPageList: {
-    color: '#FF6461',
+    color: '#e03c31',
     fontFamily: 'Roboto',
     fontSize: 20,
   },
