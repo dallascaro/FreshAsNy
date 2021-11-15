@@ -221,6 +221,18 @@ const orderScreen =  ({navigation}) => {
         <View style = {styles.homePageTitleView}>
           <Text style={styles.searchPageTitle}>Please review your order </Text>
           <Text style={styles.searchPageSubTitle}>Leave a comment for custom features </Text>
+
+          <View style={styles.textOrderSpace}>
+     <Text>Write special requests below </Text>
+                      <TextInput styles =  {styles.textInput}
+                                  placeholder = "Please describe request: "
+                                  onChangeText = {setDescription}
+                                  value = {description}
+                                  backgroundColor = "white"
+                                  color = "gray"
+                                  >
+                        </TextInput>
+                  </View>
         </View>
     </View>
 </View>
@@ -273,22 +285,6 @@ const orderScreen =  ({navigation}) => {
     <View style = {styles.prodcutsPageBottomView}>
        
     </View>
-
-    <View style = {styles.prodcutsPageBottomViewText}>
-    <View style={styles.textOrderSpace}>
-     <Text>Write special requests below </Text>
-                      <TextInput styles =  {styles.textInput}
-                                  placeholder = "Please describe request: "
-                                  onChangeText = {setDescription}
-                                  value = {description}
-                                  backgroundColor = "white"
-                                  color = "gray"
-                                  >
-                        </TextInput>
-                  </View>
-       
-       </View>
-    
 
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
@@ -397,8 +393,9 @@ const styles = StyleSheet.create({
   },
   textOrderSpace :{
     // paddingTop: 140,
-    width: 200,
-    position: "absolute"
+    width: 250,
+    position: "absolute",
+    paddingTop: 130
   },
   accountButtonView : {
     flexDirection: 'row',
