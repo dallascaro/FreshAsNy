@@ -13,35 +13,34 @@ const homeScreen =  ({navigation}) => {
     <View style={styles.container}>
 
     <View style = {styles.homePageStrawberry}>
-          <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
-          <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
+         
     </View>
 
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
-          <Text style={styles.homePageTitle}>Fresh As Ny </Text>
-          <Text style={styles.homePageSubTitle}>Welcome to Fresh As Ny ! </Text>
+          <Text style={styles.homePageTitle}></Text>
+          <Text style={styles.homePageSubTitle}></Text>
         </View>
     </View>
 
     <View style = {styles.homePageEmojiView}>
-      <View style = {styles.homePageEmoji}>
-         <Image source = {require('./assets/babesEmoji.png')}/>
-      </View>
-    </View>
-
-    <View style = {styles.homePageBottomView}>
-        <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
-        <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
-    </View>
-
-
-      <StatusBar style="auto" />
+      <View style = {styles.homePageLogo}>
+         <Image source = {require('./assets/BerryPics/freshAsNyActualLogo.png')}/>
+         <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
             title = "Click Here to create an Account"
             onPress = {() => navigation.navigate('Account')}
             color='#ff0000'>
         </Button>
+      </View>
+    </View>
+
+    <View style = {styles.homePageBottomView}>
+    
+    </View>
+
+
+      
     </View>
   );
 
@@ -69,13 +68,13 @@ const accountScreen =  ({navigation}) => {
     <View style={styles.container}>
 
     <View style = {styles.homePageStrawberry}>
-          <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
-          <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
+   
     </View>
 
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
-          <Text style={styles.homePageTitle}>Fresh As Ny </Text>
+          <Text style={styles.homePageTitle}>Fresh As Ny 
+          <Image style = {styles.accountlogo} source = {require('./assets/BerryPics/freshAsNyActualLogo.png')}/></Text>
           <Text style={styles.homePageSubTitle}>Enter email and password to order below ! </Text>
         </View>
     </View>
@@ -102,7 +101,7 @@ const accountScreen =  ({navigation}) => {
       </View>
   
       <View>
-            <View style = {styles.accountButtonView}>
+            
               <View style = {styles.accountButtonView}>
                   <Button style={styles.rightButtonSpacing}
                   title = "Enter Email and Password"
@@ -110,13 +109,14 @@ const accountScreen =  ({navigation}) => {
                   color='#ff0000'>
                   </Button>
               </View>
-              </View>
+             
+
+              
         </View>
-    
+        <Image style = {styles.accountBerry} source = {require('./assets/BerryPics/theStrawberry.png')}/>
 
     <View style = {styles.homePageBottomView}>
-        <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
-        <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+        
     </View>
 
 
@@ -137,8 +137,7 @@ const productsScreen =  ({navigation}) => {
 
 <View style = {styles.prodcutsTopView}>
     <View style = {styles.homePageStrawberry}>
-          <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
-          <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
+          
     </View>
 
     <View style = {styles.homePageWords}>
@@ -153,37 +152,37 @@ const productsScreen =  ({navigation}) => {
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
           <View style={styles.searchPageListView}>
-            <Text style={styles.searchPageList}>Products        Description        Sample</Text>
+            <Text style={styles.searchPageList}>Products                            Sample</Text>
           </View>
           <View style = {styles.productsPageScrollView}>
               <ScrollView style = {styles.prodcutPageScrollView}>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          This is a normal berry arangement
+                          Heart Shapped Berry with Name
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                          This is a halloween berry basket
+                          Halloween Berry Basket
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          This is a white chocolate berry with roses
+                          Berries with Wine and Roses
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
                         <Text> 
-                          This berry is a chocolate berry
+                          Berries with Chocolate Heart
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
                         <Text> 
-                          This berry is a chocolate berry
+                          Berries with Wine
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
                         </Text>
                     </ScrollView>
@@ -199,8 +198,7 @@ const productsScreen =  ({navigation}) => {
     </View>
 
     <View style = {styles.prodcutsPageBottomView}>
-        <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
-        <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
+       
     </View>
 
       <StatusBar style="auto" />
@@ -225,8 +223,7 @@ const orderScreen =  ({navigation}) => {
     <View style={styles.container}>
 
     <View style = {styles.homePageStrawberry}>
-          <Image style = {styles.homePageTopStrawberryRight} source = {require('./assets/strawberry/chocolateStrawBerry.png')}/>
-          <Image style = {styles.homePageTopStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64.png')}/> 
+         
     </View>
 
     <View style = {styles.homePageWords}>
@@ -272,35 +269,34 @@ const orderScreen =  ({navigation}) => {
                         </Text>
                     </ScrollView>
               </ScrollView>
+              
+
+                  <View style={styles.textOrderSpace}>
+                      <TextInput styles =  {styles.textInput}
+                                  placeholder = "Description: "
+                                  onChangeText = {setDescription}
+                                  value = {description}
+                                  backgroundColor = "white"
+                                  color = "gray"
+                                  >
+                        </TextInput>
+                  </View>
+              
           </View>
-        </View>
+          <View style = {styles.homePageBottomView}>
+              <StatusBar style="auto" />
+                <Button style = {styles.homePageButton}
+                    title = "Place Your Order!"
+                    onPress = {() => navigation.navigate('Home')}
+                    color='#ff0000'>
+                </Button>
+        
+            </View>
+      </View>
+      
     </View>
-
-    <View style = {styles.orderPageWords}>
-          <View style={styles.textOrderSpace}>
-            <TextInput styles =  {styles.textInput}
-                        placeholder = "Description: "
-                        onChangeText = {setDescription}
-                        value = {description}
-                        backgroundColor = "white"
-                        color = "gray"
-                        >
-              </TextInput>
-          </View>
-    </View>
-
-    <View style = {styles.homePageBottomView}>
-        <Image style = {styles.homePageBottomStrawberryLeft} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
-        <Image style = {styles.homePageBottomStrawberryRight} source = {require('./assets/strawberry/icons8-strawberry-64(1).png')}/>
-    </View>
-
-      <StatusBar style="auto" />
-        <Button style = {styles.homePageButton}
-            title = "Place Your Order!"
-            onPress = {() => navigation.navigate('Home')}
-            color='#ff0000'>
-        </Button>
-    </View>
+    
+</View>
   );
 
 }
@@ -328,14 +324,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     color: '#FFB6C1',
-    backgroundColor: '#FFB6C1'
+    backgroundColor: '#f7bfbe'
   },
   homePageTitleView : {
     paddingBottom: 50,
   },
   homePageTitle: {
-    color: '#FF6461',
-    fontFamily: 'Roboto',
+    color: '#e03c31',
+    fontFamily: 'Cookie',
     fontSize: 48,
   },
   productsScrollView: {
@@ -353,10 +349,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   homePageWords : {
-    flex: 1,
+    
   },
   homePageEmojiView :{
-    flex: 3
+    
   },
   homePageBottomView : {
     flex: 1,
@@ -377,8 +373,8 @@ const styles = StyleSheet.create({
   homePageBottomStrawberryRight :{
     marginTop : 50
   },
-  homePageEmoji : {
-    marginRight: 100,
+  homePageLogo : {
+    marginBottom: 150
   },
   homePageButton : {
     paddingBottom: 10
@@ -403,6 +399,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
 
+  },
+  accountBerry :{
+    flex: 4,
+    height: 200,
+    width: 200
+  },
+  accountlogo :{
+    height: 100,
+    width: 100,
+    paddingRight: 100
   },
   searchPageTitle: {
     color: '#FF6461',
@@ -436,8 +442,8 @@ const styles = StyleSheet.create({
       height: 290
   },
   productPageBerryPics :{
-    height: 250,
-    width: 175
+    height: 270,
+    width: 190
 },
 productScrollView :{
     marginBottom: 100,
