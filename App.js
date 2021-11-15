@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput, TouchableHighlight, 
+  TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, useEffect } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { auth } from './fireBase.js';
+import { onSnapshot } from '@firebase/firestore';
+import db from "./fireBase.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -122,6 +125,7 @@ const accountScreen =  ({navigation}) => {
 }
 
 const productsScreen =  ({navigation}) => {
+  
   return (
     <View style={styles.container}>
 
@@ -132,7 +136,7 @@ const productsScreen =  ({navigation}) => {
 
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
-          <Text style={styles.searchPageTitle}>Please select from our </Text>
+          <Text style={styles.searchPageTitle}>Please explore from our </Text>
           <Text style={styles.searchPageSubTitle}>Fresh amazing products! </Text>
         </View>
     </View>
@@ -153,28 +157,35 @@ const productsScreen =  ({navigation}) => {
                           </Text>
                       </ScrollView>
                       <ScrollView horizontal={true}>
+
                         <Text> 
                           Halloween Berry Basket
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
                         </Text>
                     </ScrollView>
                     <ScrollView horizontal={true}>
+                    
                         <Text> 
                           Berries with Wine and Roses
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
                         </Text>
+                       
                     </ScrollView>
                     <ScrollView horizontal={true}>
+                   
                         <Text> 
                           Berries with Chocolate Heart
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
                           </Text>
+                         
                       </ScrollView>
                       <ScrollView horizontal={true}>
+                     
                         <Text> 
                           Berries with Wine
                           <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
                         </Text>
+                       
                     </ScrollView>
               </ScrollView>
           </View>
@@ -206,8 +217,22 @@ const productsScreen =  ({navigation}) => {
 
 const orderScreen =  ({navigation}) => {
 
-  //users to be stored
-  const[description, setDescription] = React.useState("Please describe Request");
+  // setting up request to be stored in firebase
+  // call database to pull collecation of colors
+  /*
+  userEffect(() => {
+      onSnapshot(,)
+  })
+  */
+
+
+  //request to be stored
+  const[product, setProduct] = React.useState("Please enter product");
+  const[theme, setTheme] = React.useState("Please enter theme");
+  const[color, setColor] = React.useState("Please enter color");
+  const[date, setDate] = React.useState("Please enter date");
+  const[message, setMessage] = React.useState("Please enter message");
+  const[transportation, setTransportation] = React.useState("Please choose delivery or pick up");
 
   return (
     <View style={styles.container}>
@@ -219,63 +244,81 @@ const orderScreen =  ({navigation}) => {
 
     <View style = {styles.homePageWords}>
         <View style = {styles.homePageTitleView}>
-          <Text style={styles.searchPageTitle}>Please review your order </Text>
-          <Text style={styles.searchPageSubTitle}>Leave a comment for custom features </Text>
+          <Text style={styles.searchPageSubTitle}>Please choose a Berry Pakage</Text>
+          <Text style={styles.searchPageSubTitle}>Fill out the custom message</Text>
 
-          <View style={styles.textOrderSpace}>
-     <Text>Write special requests below </Text>
-                      <TextInput styles =  {styles.textInput}
-                                  placeholder = "Please describe request: "
-                                  onChangeText = {setDescription}
-                                  value = {description}
-                                  backgroundColor = "white"
-                                  color = "gray"
-                                  >
-                        </TextInput>
-                  </View>
         </View>
     </View>
 </View>
 
 <View style = {styles.prodcutsMiddleView}>
     <View style = {styles.homePageWords}>
+    <Text style={styles.searchPageList}>Please enter product to be ordered</Text>
         <View style = {styles.homePageTitleView}>
-          <View style={styles.searchPageListView}>
-            <Text style={styles.searchPageList}>Your Order                            Sample</Text>
-          </View>
-          <View style = {styles.productsPageScrollView}>
-              <ScrollView style = {styles.prodcutPageScrollView}>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Heart Shapped Berry with Name
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic1.png')}/>
-                          </Text>
-                      </ScrollView>
-                      <ScrollView horizontal={true}>
-                        <Text> 
-                          Halloween Berry Basket
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic2.png')}/>
-                        </Text>
-                    </ScrollView>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Berries with Wine and Roses
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic3.png')}/>
-                        </Text>
-                    </ScrollView>
-                    <ScrollView horizontal={true}>
-                        <Text> 
-                          Berries with Chocolate Heart
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic4.png')}/>
-                          </Text>
-                      </ScrollView>
-                      <ScrollView horizontal={true}>
-                        <Text> 
-                          Berries with Wine
-                          <Image style = {styles.productPageBerryPics} source = {require('./assets/BerryPics/BerryPic5.png')}/>
-                        </Text>
-                    </ScrollView>
-              </ScrollView>
+          <View style={styles.textOrderSpace}>
+
+              <View style={styles.textSpace}>
+                <TextInput styles =  {styles.textInput}
+                            placeholder = "Email: "
+                            onChangeText = {setProduct}
+                            value = {product}
+                            backgroundColor = "white"
+                            color = "gray"
+                            >
+                  </TextInput>
+            </View>
+            <View style={styles.textSpace}>
+                <TextInput styles =  {styles.textInput}
+                            placeholder = "Email: "
+                            onChangeText = {setTheme}
+                            value = {theme}
+                            backgroundColor = "white"
+                            color = "gray"
+                            >
+                  </TextInput>
+            </View>
+            <View style={styles.textSpace}>
+                <TextInput styles =  {styles.textInput}
+                            placeholder = "Email: "
+                            onChangeText = {setColor}
+                            value = {color}
+                            backgroundColor = "white"
+                            color = "gray"
+                            >
+                  </TextInput>
+            </View>
+            
+            <View style={styles.textSpace}>
+                <TextInput styles =  {styles.textInput}
+                            placeholder = "Password: "
+                            onChangeText = {setDate}
+                            value = {date}
+                            backgroundColor = "white"
+                            color = "gray"
+                            >
+                  </TextInput>
+            </View>
+            <View style={styles.textSpace}>
+                <TextInput styles =  {styles.textInput}
+                            placeholder = "Password: "
+                            onChangeText = {setMessage}
+                            value = {message}
+                            backgroundColor = "white"
+                            color = "gray"
+                            >
+                  </TextInput>
+            </View>
+            
+            <View style={styles.textSpace}>
+                <TextInput styles =  {styles.textInput}
+                            placeholder = "Password: "
+                            onChangeText = {setTransportation}
+                            value = {transportation}
+                            backgroundColor = "white"
+                            color = "gray"
+                            >
+                  </TextInput>
+            </View>
           </View>
         </View>
     </View>
@@ -389,13 +432,14 @@ const styles = StyleSheet.create({
   textSpace :{
     paddingBottom: 10,
     paddingTop: 10,
-    width: 200,
+    width: 250,
   },
   textOrderSpace :{
-    // paddingTop: 140,
-    width: 250,
+    width: 280,
     position: "absolute",
-    paddingTop: 130
+    paddingTop: 30,
+    paddingLeft: 50,
+    marginBottom: 20
   },
   accountButtonView : {
     flexDirection: 'row',
@@ -452,7 +496,8 @@ productScrollView :{
     paddingBottom: 100,
 },
 prodcutsTopView : {
-  flex: 2
+  flex: 2,
+  marginBottom: 40
 },
 prodcutsMiddleView : {
   flex: 1
