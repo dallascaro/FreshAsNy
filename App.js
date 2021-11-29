@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput, TouchableHighlight, 
+import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput, Alert, TouchableHighlight, 
   TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, useEffect } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -48,9 +48,6 @@ const accountScreen =  ({navigation}) => {
   //users to be stored
   const[email, setEmail] = React.useState("Email");
   const[password, setPassword] = React.useState("Password");
-
-  // Do not need a database, only store the users info and order
-  // metehod for saving user email into authentication
   
   const placeOrder = () => {
     auth.signInWithEmailAndPassword(email.trim(), password) 
@@ -234,6 +231,9 @@ const orderScreen =  ({navigation}) => {
   const[message, setMessage] = React.useState("Please enter message");
   const[transportation, setTransportation] = React.useState("Please choose delivery or pick up");
 
+  // Array This array stores all the inputs from the text fields.
+  var inputs = [product, theme, color, date, message, transportation];
+
   return (
     <View style={styles.container}>
 
@@ -246,10 +246,12 @@ const orderScreen =  ({navigation}) => {
         <View style = {styles.homePageTitleView}>
           <Text style={styles.searchPageSubTitle}>Please choose a Berry Pakage</Text>
           <Text style={styles.searchPageSubTitle}>Fill out the custom message</Text>
-
         </View>
     </View>
+    <Text>{inputs}</Text>
 </View>
+
+
 
 <View style = {styles.prodcutsMiddleView}>
     <View style = {styles.homePageWords}>
@@ -332,7 +334,9 @@ const orderScreen =  ({navigation}) => {
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
             title = "Click here to place Order!"
-            onPress = {() => navigation.navigate('Home')}
+            onPress = {
+              () => Alert.alert('Placed Order')
+            }
             color='#ff0000'>
         </Button>
   </View>
@@ -341,8 +345,6 @@ const orderScreen =  ({navigation}) => {
   );
 
 }
-
-
 
 
 const App = () => {
