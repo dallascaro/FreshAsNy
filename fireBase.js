@@ -1,12 +1,13 @@
 // Import the functions you need from the SDKs you need
-import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import {doc, setDoc, getFirestore, collection, getDocs} from "firebase/firestore";
-import App from './App';
-import inputs from './App.js';
+//import {getFirestore} from "firebase/firestore";
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+//import database from '@react-native-firebase/database';
+import { getDatabase, ref, set } from "firebase/database";
 //import { getAnalytics } from "firebase/analytics";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,9 +22,7 @@ const firebaseConfig = {
   appId: "1:836606517709:web:c668bcdeb0013b7cbc6484",
   measurementId: "G-BCW25NPMB5"
 };
-
 // Initialize Firebase
-
 let app;
 if (firebase.apps.length === 0){
   app = firebase.initializeApp(firebaseConfig);
@@ -31,49 +30,25 @@ if (firebase.apps.length === 0){
   app = firebase.app()
 }
 
+// Authentication
 const auth = firebase.auth()
 
-//initalize database
-const db = getFirestore() // connection to database
+// Real Time Database
+const db = getFirestore(app);
 
-// getting a collection in the database from collection ref
-const colRef = collection(db, 'Orders') //Fetch info of Orders
+// Function to write data for a user
+function writeUserData(email, product, theme, color, date, message, transportation ) {
+  set(ref(db, 'Users' + email), {
+    email: email,
+    product: product,
+    theme: theme,
+    color: color,
+    date: date,
+    message: message,
+    delivery: transportation
+  });
+}
 
-//get collection data
-getDocs(colRef) // fetches all the documnets from collection 
-  .then((snapshot) => {
-    console.log(snapshot.docs)
-  })
 
-  .catch(err => {
-    console.log(err.mesaage)
-  })
-
-  // Testing pull of data
-  console.log("hello");
-  console.log();
-
-  // Add a new document in collection Customers
-  const order = {
-    color: inputs[2],
-    date: inputs[3],
-    delivery: inputs[5] ,
-    email: 'email' ,
-    message: inputs[4],
-    product: inputs[0],
-    theme: inputs[1]
-  }
-
-  console.log(order);
-  //const res = await db.collection('Orders').doc('GLrUmUmI8yeVwUTDVJQn').set(order);
-
-  // Add a new document with a generated id.
-//const res = await db.collection('cities').add({
-  //name: 'Tokyo',
-  //country: 'Japan'
-//});
-
-//console.log('Added document with ID: ', res.id);
-
-export { auth };
+export {auth, writeUserData, db};
 export default getFirestore();

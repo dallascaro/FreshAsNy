@@ -4,9 +4,8 @@ import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput, Alert, To
   TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback, useEffect } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { auth } from './fireBase.js';
-import { onSnapshot } from '@firebase/firestore';
-import db from "./fireBase.js";
+import { auth, writeUserData, db  } from './fireBase.js';
+import { collection, getDoc, getDocs } from 'firebase/firestore/lite';
 
 const Stack = createNativeStackNavigator();
 
@@ -216,14 +215,26 @@ const orderScreen =  ({navigation}) => {
 
   // setting up request to be stored in firebase
   // call database to pull collecation of colors
-  /*
-  userEffect(() => {
-      onSnapshot(,)
-  })
-  */
+  // First Argument = which document to get from database.
+  // Second Argument = call back function
+  
+  // useEffect(() => {
+  //     onSnapshot(collection(db, "Orders"), (snapshot) => {
+  //       console.log(snapshot);
+  //     });
+  // })
+
+  const PostData = async () => {
+    const ordersCol = collection(db, 'Orders')
+    const ordersSnapshot = await getDocs(ordersCol)
+    const orderList = ordersSnapshot.docs.map(doc => doc.data());
+
+    console.log(orderList)
+  }
 
 
   //request to be stored
+  const[email, setEmail] = React.useState("Please enter email");
   const[product, setProduct] = React.useState("Please enter product");
   const[theme, setTheme] = React.useState("Please enter theme");
   const[color, setColor] = React.useState("Please enter color");
@@ -231,10 +242,16 @@ const orderScreen =  ({navigation}) => {
   const[message, setMessage] = React.useState("Please enter message");
   const[transportation, setTransportation] = React.useState("Please choose delivery or pick up");
 
+
+const placeOrder = () => {
+  writeUserData(email, product, theme, color, date, message, transportation );
+}
+
   // Array This array stores all the inputs from the text fields.
-  var inputs = [product, theme, color, date, message, transportation];
+  var inputs = [email, product, theme, color, date, message, transportation];
 
   return (
+
     <View style={styles.container}>
 
 <View style = {styles.prodcutsTopView}>
@@ -252,12 +269,28 @@ const orderScreen =  ({navigation}) => {
 </View>
 
 
+<View>
+<Button
+  title='Post Data'
+  onPress={PostData}></Button>
+</View>
 
 <View style = {styles.prodcutsMiddleView}>
     <View style = {styles.homePageWords}>
     <Text style={styles.searchPageList}>Please enter product to be ordered</Text>
         <View style = {styles.homePageTitleView}>
           <View style={styles.textOrderSpace}>
+
+          <View style={styles.textSpace}>
+                <TextInput styles =  {styles.textInput}
+                            placeholder = "Email: "
+                            onChangeText = {setEmail}
+                            value = {email}
+                            backgroundColor = "white"
+                            color = "gray"
+                            >
+                  </TextInput>
+            </View>
 
               <View style={styles.textSpace}>
                 <TextInput styles =  {styles.textInput}
@@ -334,9 +367,7 @@ const orderScreen =  ({navigation}) => {
       <StatusBar style="auto" />
         <Button style = {styles.homePageButton}
             title = "Click here to place Order!"
-            onPress = {
-              () => Alert.alert('Placed Order')
-            }
+            onPress = {placeOrder}
             color='#ff0000'>
         </Button>
   </View>
