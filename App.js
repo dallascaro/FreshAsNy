@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, Button, Image, ScrollView, TextInput, Alert, To
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { auth, writeUserData, db  } from './fireBase.js';
-import { collection, getDoc, getDocs } from 'firebase/firestore/lite';
+import { collection, doc, getDoc, getDocs, addDoc } from 'firebase/firestore/lite';
 
 const Stack = createNativeStackNavigator();
 
@@ -224,12 +224,22 @@ const orderScreen =  ({navigation}) => {
   //     });
   // })
 
-  const PostData = async () => {
+  const PullData = async () => {
     const ordersCol = collection(db, 'Orders')
     const ordersSnapshot = await getDocs(ordersCol)
     const orderList = ordersSnapshot.docs.map(doc => doc.data());
 
     console.log(orderList)
+  }
+
+  const PostData = async () => { 
+    // Add a new document with a generated id.
+const docRef = await addDoc(collection(db, "Orders"), {
+  name: "fuckyou@email.com",
+  order: "Berry One"
+});
+console.log("Document written with ID: ", docRef.id);
+
   }
 
 
@@ -270,6 +280,10 @@ const placeOrder = () => {
 
 
 <View>
+<Button
+  title='Pull Data'
+  onPress={PullData}></Button>
+
 <Button
   title='Post Data'
   onPress={PostData}></Button>
